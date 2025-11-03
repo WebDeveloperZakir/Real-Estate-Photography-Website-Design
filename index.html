@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Solutions - Photographie Immobilière</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #3a86ff;
+            --text-color: #333;
+            --light-gray: #f9f9f9;
+            --border-color: #eaeaea;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+        
+        .language-toggle a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .language-toggle a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background-image: url('https://images.squarespace-cdn.com/content/v1/6192b02960e94236fc22acce/1619b64e-7cb8-47f7-b1c8-97372376891f/Real+Esta.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2a76e6;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .service-card {
+            text-align: center;
+        }
+        
+        .service-image {
+            height: 250px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .service-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        /* Apartments Section */
+        .apartments {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+        
+        .apartments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .apartment-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .apartment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .apartment-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .apartment-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .apartment-card:hover .apartment-image img {
+            transform: scale(1.05);
+        }
+        
+        .apartment-content {
+            padding: 25px;
+        }
+        
+        .apartment-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .apartment-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .apartment-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        .apartment-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .apartment-meta i {
+            margin-right: 5px;
+        }
+        
+        /* Location Section */
+        .location {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .location-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .location-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .location-areas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .area-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .area-item i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: var(--light-gray);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-image {
+            height: 500px;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            margin-top: 40px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .form-submit button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .form-submit button:hover {
+            background: #2a76e6;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            margin-top: 3px;
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2rem;
+            }
+            
+            .location-text h2 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .location-areas {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+            
+            .language-toggle {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .apartments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <img src="Logo.png" alt="K Solutions Logo">
+                    
+                </a>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#about">Apartments</a></li>
+                        <li><a href="#about">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="language-toggle">
+                    <a href="#">EN</a>
+                    <a href="#" class="active">FR</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Photographie Immobilière Professionnelle</h1>
+                <p>Mise en valeur des propriétés avec des visuels époustouflants qui captivent les acheteurs potentiels et accélèrent les ventes.</p>
+                <a href="#contact" class="btn">Contactez-nous</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos Services</h2>
+                <p>Solutions visuelles complètes conçues pour mettre en valeur vos propriétés sous leur meilleur jour.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://picsum.photos/seed/photography/600/400.jpg" alt="Photographie Immobilière">
+                    </div>
+                    <h3>Photographie</h3>
+                    <p>Images haute résolution qui capturent l'essence et les caractéristiques uniques de chaque propriété.</p>
+                    <a href="#contact" class="btn">En Savoir Plus</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://picsum.photos/seed/drone/600/400.jpg" alt="Photographie par Drone">
+                    </div>
+                    <h3>Services par Drone</h3>
+                    <p>Photographie et vidéographie aériennes offrant des perspectives époustouflantes des propriétés et de leurs environs.</p>
+                    <a href="#contact" class="btn">En Savoir Plus</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://picsum.photos/seed/virtualtour/600/400.jpg" alt="Visites Virtuelles 3D">
+                    </div>
+                    <h3>Visites Virtuelles 3D</h3>
+                    <p>Expériences virtuelles immersives qui permettent aux acheteurs potentiels d'explorer les propriétés de n'importe où.</p>
+                    <a href="#contact" class="btn">En Savoir Plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Apartments Section -->
+    <section class="apartments">
+        <div class="container">
+            <div class="section-title">
+                <h2>Propriétés Vedettes</h2>
+                <p>Explorez notre portefeuille de propriétés résidentielles et commerciales époustouflantes.</p>
+            </div>
+            
+            <div class="apartments-grid">
+                <div class="apartment-card">
+                    <div class="apartment-image">
+                        <img src="https://images.trvl-media.com/lodging/47000000/46940000/46935200/46935112/9329f765.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" alt="Condo de Luxe en Centre-ville">
+                    </div>
+                    <div class="apartment-content">
+                        <h3>Condo de Luxe en Centre-ville</h3>
+                        <p>Vie moderne en gratte-ciel avec vues panoramiques sur la ville et installations premium.</p>
+                        <div class="apartment-meta">
+                            <span><i class="fas fa-bed"></i> 2 Chambres</span>
+                            <span><i class="fas fa-bath"></i> 2 SDB</span>
+                            <span><i class="fas fa-ruler-combined"></i> 1,200 pc</span>
+                        </div>
+                        <a href="#contact" class="btn">Voir Détails</a>
+                    </div>
+                </div>
+                
+                <div class="apartment-card">
+                    <div class="apartment-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUDEXztjOd43q0_JcvO11qqDUraSbshe52yQ&s" alt="Maison Familiale en Banlieue">
+                    </div>
+                    <div class="apartment-content">
+                        <h3>Maison Familiale en Banlieue</h3>
+                        <p>Maison unifamiliale spacieuse avec grand arrière-cour et rénovations modernes.</p>
+                        <div class="apartment-meta">
+                            <span><i class="fas fa-bed"></i> 4 Chambres</span>
+                            <span><i class="fas fa-bath"></i> 3 SDB</span>
+                            <span><i class="fas fa-ruler-combined"></i> 2,500 pc</span>
+                        </div>
+                        <a href="#contact" class="btn">Voir Détails</a>
+                    </div>
+                </div>
+                
+                <div class="apartment-card">
+                    <div class="apartment-image">
+                        <img src="https://amazingarchitecture.com/storage/227/14516948_image9470.jpg" alt="Loft Industriel">
+                    </div>
+                    <div class="apartment-content">
+                        <h3>Loft Industriel</h3>
+                        <p>Espace d'entrepôt converti avec briques apparentes, hauts plafonds et lumière naturelle.</p>
+                        <div class="apartment-meta">
+                            <span><i class="fas fa-bed"></i> 1 Chambre</span>
+                            <span><i class="fas fa-bath"></i> 1 SDB</span>
+                            <span><i class="fas fa-ruler-combined"></i> 900 pc</span>
+                        </div>
+                        <a href="#contact" class="btn">Voir Détails</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Location Section -->
+    <section class="location">
+        <div class="container">
+            <div class="section-title">
+                <h2>Zones de Service</h2>
+                <p>Nous desservons fièrement la Grande Région Métropolitaine et les régions environnantes.</p>
+            </div>
+            
+            <div class="location-content">
+                <div class="location-text">
+                    <h2>Où Nous Opérons</h2>
+                    <p>Notre équipe est stratégiquement positionnée pour servir les professionnels de l'immobilier dans toute la région. Que vous soyez au cœur du centre-ville ou dans les banlieues environnantes, nous apportons notre expertise et notre équipement professionnel à votre emplacement.</p>
+                    <p>Nous comprenons les caractéristiques uniques des différents quartiers et savons mettre en valeur les caractéristiques qui rendent chaque propriété spéciale. Des gratte-ciel de luxe aux charmantes maisons familiales, nous capturons l'essence de chaque espace.</p>
+                    
+                    <div class="location-areas">
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Centre-ville</span>
+                        </div>
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ouest</span>
+                        </div>
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Est</span>
+                        </div>
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nord</span>
+                        </div>
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Sud</span>
+                        </div>
+                        <div class="area-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Banlieues</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.4114153616375!2d-74.01259368459418!3d40.71427927933039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb0a59b%3A0x4e3c5e7e5e7e5e7e!2sOne%20World%20Trade%20Center!5e0!3m2!1sen!2sus!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://picsum.photos/seed/photographer/600/500.jpg" alt="Photographe Immobilière">
+                </div>
+                
+                <div class="about-text">
+                    <h2>À Propos de K Solutions</h2>
+                    <p>Avec plus d'une décennie d'expérience en photographie immobilière, je me spécialise dans la création de contenu visuel qui aide les propriétés à se démarquer sur des marchés concurrentiels.</p>
+                    <p>Mon approche combine une expertise technique avec un œil artistique pour capturer le caractère unique de chaque espace. Je comprends que la grande photographie immobilière ne consiste pas seulement à documenter une propriété, mais à raconter une histoire qui résonne avec les acheteurs potentiels.</p>
+                    <p>Que vous soyez un agent immobilier, un promoteur ou un propriétaire, je m'engage à fournir des images qui mettent en valeur votre propriété sous son meilleur jour et vous aident à atteindre vos objectifs de vente.</p>
+                    <a href="#contact" class="btn">Contactez-nous</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contactez-nous</h2>
+                <p>Prêt à améliorer vos annonces immobilières? Contactez-moi dès aujourd'hui pour discuter de votre projet.</p>
+            </div>
+            
+            <div class="contact-content">
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Courriel</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Service Intéressé</label>
+                            <select id="service" name="service">
+                                <option value="photography">Photographie</option>
+                                <option value="drone">Services par Drone</option>
+                                <option value="virtual-tour">Visites Virtuelles 3D</option>
+                                <option value="video">Vidéo</option>
+                                <option value="multiple">Services Multiples</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit">Envoyer le Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="Logo.png" alt="K Solutions Logo">
+                        
+                    </div>
+                    <p>Services professionnels de photographie immobilière qui aident les propriétés à se démarquer et à se vendre plus rapidement. Visuels de haute qualité pour le marché immobilier moderne.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#services">Nos Services</a></li>
+                        <li><a href="#apartments">Propriétés Vedettes</a></li>
+                        <li><a href="#about">À Propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">Conditions d'Utilisation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Coordonnées</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Avenue des Affaires, Bureau 100<br>Ville Métropolitaine, PQ 12345</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@ksolutions.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Lun-Ven: 9H-18H<br>Sam: 10H-16H</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 K Solutions. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Language toggle functionality
+        const languageToggle = document.querySelectorAll('.language-toggle a');
+        
+        languageToggle.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                languageToggle.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // In a real implementation, this would switch the page content
+                // For this demo, we'll just show an alert
+                const lang = this.textContent;
+                console.log(`Language switched to ${lang}`);
+                
+                // In a real WordPress implementation with Polylang or WPML,
+                // this would redirect to the appropriate language version
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, this would submit the form via AJAX
+            // For this demo, we'll just show an alert
+            alert('Merci pour votre message! Nous vous répondrons bientôt.');
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
